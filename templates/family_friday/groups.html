@@ -1,0 +1,30 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block js %}
+    <script src="{% static 'family_friday/group-controller.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div ng-controller="GroupController as groupCtrl"
+         class="family-friday">
+        <div class="header">
+            <h1 class="header__title">Family Friday</h1>
+            <p class="header__sub-title">
+                There are <span ng-bind="groupCtrl.employees.length"></span> employees at the company.             <a href="{% url 'family_friday:manage' %}">Manage employees</a>
+            </p>
+        </div>
+        <div class="groups">
+            <div ng-repeat="group in groupCtrl.groups"
+                 class="group">
+                <div class="group__name"
+                     ng-bind="::group.name"></div>
+                <div ng-repeat="employee in group.employees"
+                     class="group__employee"
+                     ng-bind="::employee.name"></div>
+            </div>
+        </div>
+        <button class="generate-groups-button" ng-click="groupCtrl.generateGroups()">Generate Groups</button>
+    </div>
+
+{% endblock %}

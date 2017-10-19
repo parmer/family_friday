@@ -1,0 +1,177 @@
+@import "reset";
+
+$link-color: #00adf2;
+$error-color: adjust-hue($link-color, 180deg);
+$card-color: #fff;
+
+@font-face {
+  font-family: 'Bariol Regular';
+  src: url(/static/family_friday/bariol_regular-webfont.woff) format("woff");
+}
+
+html {
+  font-size: 16px;
+
+  * {
+    font-family: "Bariol Regular", sans-serif;
+  }
+
+  a {
+    color: $link-color;
+  }
+}
+
+body {
+  background: #f5f5f5;
+  padding: 0;
+  margin: 0;
+}
+
+.family-friday {
+  text-align: center;
+  max-width: 1000px;
+  padding: 10vh 15px 5vh;
+  margin: auto;
+}
+
+.header {
+  &__title {
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  &__sub-title {
+    font-size: 1.15rem;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    color: #777;
+  }
+}
+
+button {
+  background: $link-color;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 0.15em;
+  cursor: pointer;
+
+  &:hover {
+    background: darken($link-color, 4%);
+  }
+
+  &:active {
+    background: darken($link-color, 8%);
+  }
+
+}
+
+.generate-groups-button {
+  margin-top: 1em;
+  background: $link-color;
+  font-size: 1.25rem;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 0.15em;
+  cursor: pointer;
+
+  &:hover {
+    background: darken($link-color, 4%);
+  }
+
+  &:active {
+    background: darken($link-color, 8%);
+  }
+}
+
+.groups {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.group {
+  $group-padding: 1em;
+  font-size: 1rem;
+  margin: 0 $group-padding $group-padding;
+  padding-bottom: $group-padding / 2;
+  background: $card-color;
+  box-shadow: 0 0.1em 0.4em rgba(#000, 0.15);
+  text-align: left;
+  min-width: 10em;
+
+  .group__name {
+    background: mix($link-color, $card-color, 10%);
+    padding: ($group-padding / 1.5) $group-padding;
+    border-bottom: 1px solid mix($link-color, $card-color, 15%);
+    margin-bottom: $group-padding / 2;
+  }
+
+  .group__employee {
+    padding: 0.25em $group-padding;
+  }
+}
+
+.create-employee {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  margin-top: 2em;
+
+
+  &__label {
+    line-height: 2.25;
+    margin-right: 1em;
+  }
+
+  &__input {
+    font-size: inherit;
+    padding: 0.5em;
+    border-radius: 0.25em 0 0 0.25em;
+    border: 1px solid darken(#fff, 15%);
+  }
+
+  &__button {
+    font-size: inherit;
+    border-radius: 0 0.25em 0.25em 0;
+  }
+}
+
+.error-message {
+  color: $error-color;
+  margin-top: 0.5em;
+}
+
+
+.employees {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 20rem;
+  margin: 1.5em auto;
+  background: $card-color;
+  box-shadow: 0 0.1em 0.4em rgba(#000, 0.15);
+
+  &__row {
+    font-size: 1rem;
+    padding: 0.75em 1.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid darken($card-color, 10%);
+
+    &:hover {
+      background: darken($card-color, 2%);
+    }
+
+    &__delete {
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

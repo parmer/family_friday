@@ -1,0 +1,42 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block js %}
+    <script src="{% static 'family_friday/manage-controller.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div ng-controller="ManageController as manageCtrl"
+         class="family-friday">
+        <div class="header">
+            <h1 class="header__title">Manage Employees</h1>
+            <p class="header__sub-title" >
+                <a href="{% url 'family_friday:groups' %}">Back to Family Friday</a>
+            </p>
+        </div>
+
+        <form class="create-employee" ng-submit="manageCtrl.createEmployee()">
+            <label for="employee_name"
+                   class="create-employee__label">Create Employee</label>
+            <input id="employee_name"
+                   class="create-employee__input"
+                   placeholder="Employee name (like Jlatt)"
+                   type="text"
+                   ng-model="manageCtrl.newEmployeeName" />
+            <button class="create-employee__button"
+                    type="submit">Create</button>
+        </form>
+        <div class="error-message" ng-if="manageCtrl.createError" ng-bind="manageCtrl.createError"></div>
+
+        <div class="employees">
+            <div ng-repeat="employee in manageCtrl.employees"
+                 class="employees__row">
+                <div class="employees__row__name"
+                     ng-bind="employee.name"></div>
+                <a class="employees__row__delete"
+                        ng-click="manageCtrl.deleteEmployee(employee)">Delete</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
