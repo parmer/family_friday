@@ -1,6 +1,10 @@
 Family Fridays
 ==============
-Project by [Paul Armer](http://paularmer.me)
+Project by [Paul Armer](http://paularmer.me) for Apartment List
+
+![](https://raw.githubusercontent.com/parmer/family_friday/master/static/family_friday/groups.png =200x)
+![](https://raw.githubusercontent.com/parmer/family_friday/master/static/family_friday/manage.png =200x)
+![](https://raw.githubusercontent.com/parmer/family_friday/master/static/family_friday/jlatt.png =200x)
 
 Requirements
 ------------
