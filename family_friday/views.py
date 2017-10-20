@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.utils.datastructures import MultiValueDictKeyError
 from django.views import generic
 
-from family_friday.models import Employee
+from family_friday.models import Employee, MAX_GROUP_SIZE, MIN_GROUP_SIZE
 
 
 class ManageEmployeesView(generic.TemplateView):
@@ -22,7 +22,7 @@ class GroupsView(generic.TemplateView):
 
 
 def list_employees(request):
-    employees = Employee.objects.all().values('id', 'name', 'join_date')
+    employees = Employee.objects.all().order_by("-join_date").values('id', 'name', 'join_date')
     return JsonResponse(list(employees), safe=False)
 
 
@@ -58,18 +58,20 @@ def _get_random_index_for_list(arr):
     return floor(random() * len(arr))
 
 
+def create_group(name, employees = None):
+    return {
+        # Humans count from 1
+        'name': name,
+        'employees': employees or []
+    }
+
+
 def get_groups(request):
     groups = []
     employees = list(Employee.objects.all().values('id', 'name', 'join_date'))
 
-    MIN_GROUP_SIZE = 3
-    MAX_GROUP_SIZE = 5
-
-    while len(employees) >= MIN_GROUP_SIZE:
-        group = {
-            'name': "Group %s" % len(groups),
-            'employees': []
-        }
+    while len(employees) >= MAX_GROUP_SIZE - 1:
+        group = create_group("Group %s" % (len(groups) + 1))
 
         for x in range(0, MAX_GROUP_SIZE - 1):
             employee_index = _get_random_index_for_list(employees)
@@ -78,13 +80,16 @@ def get_groups(request):
 
         groups.append(group)
 
-    while len(employees) > 0:
-        employee_index = _get_random_index_for_list(employees)
-        group_index = _get_random_index_for_list(groups)
-        group = groups[group_index]
+    if len(employees) >= MIN_GROUP_SIZE:
+        groups.append(create_group("Group %s" % (len(groups) + 1), employees))
+    else:
+        while len(employees) > 0:
+            employee_index = _get_random_index_for_list(employees)
+            group_index = _get_random_index_for_list(groups)
+            group = groups[group_index]
 
-        if len(group['employees']) < MAX_GROUP_SIZE:
-            group['employees'].append(employees.pop(employee_index))
+            if len(group['employees']) < MAX_GROUP_SIZE:
+                group['employees'].append(employees.pop(employee_index))
 
     return JsonResponse(groups, safe=False)
 
