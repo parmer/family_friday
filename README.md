@@ -2,10 +2,6 @@ Family Fridays
 ==============
 Project by [Paul Armer](http://paularmer.me) for Apartment List
 
-[![Groups View](https://raw.githubusercontent.com/parmer/family_friday/master/static/family_friday/groups.png | width=200)](https://raw.githubusercontent.com/parmer/family_friday/master/static/family_friday/groups.png)
-![Manage Employees](https://raw.githubusercontent.com/parmer/family_friday/master/static/family_friday/manage.png | width=200)
-![JLatt](https://raw.githubusercontent.com/parmer/family_friday/master/static/family_friday/jlatt.png | width=200)
-
 Requirements
 ------------
 * SASS ([install](http://sass-lang.com/install))
