@@ -49,3 +49,7 @@ Further Endeavors
 * Possibly handle employee sets of up to twice MIN_GROUP_SIZE (3 * 2 = 6)
 * Switch to use a non-sqlite3 database
 * Who is **_Jlatt_**?
+
+![Groups View](https://raw.githubusercontent.com/parmer/family_friday/master/static/family_friday/groups.png)
+![Manage Employees](https://raw.githubusercontent.com/parmer/family_friday/master/static/family_friday/manage.png)
+![JLatt](https://raw.githubusercontent.com/parmer/family_friday/master/static/family_friday/jlatt.png)
