@@ -27,6 +27,10 @@ class ManageController {
             this.employees = employees;
         }.bind(this));
     }
+
+    deleteEmployee(employee) {
+        this.employeeService.deleteEmployee(employee).then(this.refreshEmployees.bind(this));
+    }
 }
 
 ManageController.$inject = ["EmployeeService"];

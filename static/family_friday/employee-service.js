@@ -3,32 +3,39 @@ class EmployeeService {
         this.$http = $http;
     }
 
-    getEmployees() {
-        return this.$http.get("/employees/").then(function(response) {
+    getResponseDataPromise(url, params) {
+        let data = {};
+
+        if (params) {
+            data['params'] = params;
+        }
+
+        return this.$http.get(url, data).then(function(response) {
             return response.data;
         }.bind(this));
     }
 
+    getEmployees() {
+        return this.getResponseDataPromise("/employees/");
+    }
+
+    getEmployeeGroups() {
+        return this.getResponseDataPromise("/employee-groups/");
+    }
+
     createEmployee(name) {
         let employeeData = {
-            params: {
-                employee_name: name
-            }
+            employee_name: name
         };
 
-        return this.$http.get("/create-employee/", employeeData)
-            .then(function(response) {
-                return response.data;
-            })
+        return this.getResponseDataPromise("/create-employee/", employeeData)
             .catch(function(response) {
                 throw response.data.error;
             });
     }
 
     deleteEmployee(employee) {
-        return this.$http.get("/create-employee/" + employee.id + "/", employeeData).then(function(response) {
-            return response.data;
-        }.bind(this));
+        return this.getResponseDataPromise("/delete-employee/" + employee.id + "/");
     }
 }
 

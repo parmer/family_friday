@@ -10,6 +10,7 @@ urlpatterns = [
 
     # Data Endpoints
     url('^employees/$', views.list_employees, name='employees'),
+    url('^employee-groups/$', views.get_groups, name='employee_groups'),
     url('^create-employee/$', views.create_employee, name='create_employee'),
     url('^delete-employee/(?P<employee_id>[0-9]+)/$', views.delete_employee, name='delete_employee'),
 ]
