@@ -11,7 +11,7 @@
         <div class="header">
             <h1 class="header__title">Family Friday</h1>
             <p class="header__sub-title">
-                There are <span ng-bind="groupCtrl.employees.length"></span> employees at the company.             <a href="{% url 'family_friday:manage' %}">Manage employees</a>
+                There are {{ num_employees }} employees at the company. <a href="{% url 'family_friday:manage' %}">Manage employees</a>
             </p>
         </div>
         <div class="groups">

@@ -5,7 +5,7 @@ app_name = "family_friday"
 
 urlpatterns = [
     # Views
-    url('^$', views.GroupsView.as_view(), name='groups'),
+    url('^$', views.index_view, name='groups'),
     url('^manage/$', views.ManageEmployeesView.as_view(), name='manage'),
 
     # Data Endpoints

@@ -2,7 +2,7 @@ from math import floor
 from random import random
 
 from django.db import IntegrityError
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.http import JsonResponse
 from django.utils import timezone
 
@@ -17,8 +17,10 @@ class ManageEmployeesView(generic.TemplateView):
     template_name = "family_friday/manage.html"
 
 
-class GroupsView(generic.TemplateView):
-    template_name = "family_friday/groups.html"
+def index_view(request):
+    employees = Employee.objects.all()
+    context = {'num_employees': len(employees)}
+    return render(request, 'family_friday/groups.html', context)
 
 
 def list_employees(request):

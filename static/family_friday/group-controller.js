@@ -1,11 +1,7 @@
 class GroupController {
     constructor(employeeService) {
         this.employeeService = employeeService;
-        this.employees = [];
-
-        this.employeeService.getEmployees().then(function(employees) {
-            this.employees = employees;
-        }.bind(this));
+        this.groups = [];
     }
 
     generateGroups() {
