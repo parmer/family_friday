@@ -28,6 +28,15 @@ class ManageController {
         }.bind(this));
     }
 
+    toggleInOfficeStatus(employee) {
+        if (employee.in_office) {
+            this.employeeService.setOutOfOffice(employee).then(this.refreshEmployees.bind(this));
+        }
+        else {
+            this.employeeService.setInOffice(employee).then(this.refreshEmployees.bind(this));
+        }
+    }
+
     deleteEmployee(employee) {
         this.employeeService.deleteEmployee(employee).then(this.refreshEmployees.bind(this));
     }

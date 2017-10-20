@@ -33,6 +33,10 @@
                  class="employees__row">
                 <div class="employees__row__name"
                      ng-bind="employee.name"></div>
+                <a ng-click="manageCtrl.toggleInOfficeStatus(employee)">
+                    <span ng-show="employee.in_office">In office</span>
+                    <span ng-hide="employee.in_office">Out of office</span>
+                </a>
                 <a class="employees__row__delete"
                         ng-click="manageCtrl.deleteEmployee(employee)">Delete</a>
             </div>

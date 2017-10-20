@@ -23,6 +23,14 @@ class EmployeeService {
         return this.getResponseDataPromise("/employee-groups/");
     }
 
+    setOutOfOffice(employee) {
+        return this.getResponseDataPromise("/employee-out-of-office/" + employee.id + "/");
+    }
+
+    setInOffice(employee) {
+        return this.getResponseDataPromise("/employee-in-office/" + employee.id + "/");
+    }
+
     createEmployee(name) {
         let employeeData = {
             employee_name: name

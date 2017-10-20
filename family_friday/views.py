@@ -24,13 +24,29 @@ def index_view(request):
 
 
 def list_employees(request):
-    employees = Employee.objects.all().order_by("-join_date").values('id', 'name', 'join_date')
+    employees = Employee.objects.all().order_by("-join_date").values('id', 'name', 'join_date', 'in_office')
     return JsonResponse(list(employees), safe=False)
 
 
 def delete_employee(request, employee_id):
     employee = get_object_or_404(Employee, id=employee_id)
     employee.delete()
+
+    return JsonResponse({})
+
+
+def employee_in_office(request, employee_id):
+    employee = get_object_or_404(Employee, id=employee_id)
+    employee.in_office = True
+    employee.save()
+
+    return JsonResponse({})
+
+
+def employee_not_in_office(request, employee_id):
+    employee = get_object_or_404(Employee, id=employee_id)
+    employee.in_office = False
+    employee.save()
 
     return JsonResponse({})
 
@@ -70,7 +86,7 @@ def create_group(name, employees = None):
 
 def get_groups(request):
     groups = []
-    employees = list(Employee.objects.all().values('id', 'name', 'join_date'))
+    employees = list(Employee.objects.filter(in_office=True).values('id', 'name', 'join_date'))
 
     while len(employees) >= MAX_GROUP_SIZE - 1:
         group = create_group("Group %s" % (len(groups) + 1))

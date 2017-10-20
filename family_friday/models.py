@@ -8,6 +8,7 @@ MAX_GROUP_SIZE = 5
 # Create your models here.
 class Employee(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    in_office = models.BooleanField(default=True)
     join_date = models.DateTimeField()
 
     def __str__(self):
